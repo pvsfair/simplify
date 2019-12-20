@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, CheckBox, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import CustomTextInput from '../../components/textInput';
 import CustomButton from '../../components/button';
 
@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
     textAlign: 'left',
-    width: '64%',
   },
   welcome: {
     fontSize: 30,
@@ -48,22 +47,19 @@ export default class Main extends Component {
     this.setState({isReady: true});
   }
 
-  login() {
-    console.log('Login');
-    this.props.navigation.navigate('Home');
-  }
-
-  forgotPassword() {
-    this.props.navigation.navigate('ForgotPass');
+  resetPassword() {
+    console.log('Uma nova senha foi encaminhada para o e-mail cadastrado :)');
+    this.props.navigation.goBack();
   }
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.welcome}>Olá!</Text>
+          <Text style={styles.welcome}>Problemas ao entrar?</Text>
           <Text style={styles.underWelcome}>
-            Agora as coisas estão mais Simplify :) para nós da TradeUp
+            Informe seu CPF e data de nascimento para que possamos enviar nova
+            senha para que você possa acessar sua conta
           </Text>
         </View>
         <CustomTextInput
@@ -72,26 +68,16 @@ export default class Main extends Component {
           value={this.state.cpfValue}
         />
         <CustomTextInput
-          placeholder="Informa a senha"
+          placeholder="Informe sua data de nascimento"
           onChangeText={password => this.setState({password})}
           value={this.state.password}
           isSecure={true}
         />
-        <View style={styles.rememberPass}>
-          <CheckBox />
-          <Text>Lembrar minha senha</Text>
-        </View>
         <CustomButton
           onPress={() => {
-            this.login();
+            this.resetPassword();
           }}
-          label="Entrar"
-        />
-        <CustomButton
-          onPress={() => {
-            this.forgotPassword();
-          }}
-          label="Esqueceu a senha?"
+          label="Enviar"
         />
       </View>
     );
