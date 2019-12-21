@@ -3,27 +3,23 @@ import {View, Text, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   main: {
-    width: '97%',
-    margin: 4,
-    shadowColor: '#2c2c2c',
+    width: '96%',
+    shadowColor: '#2b2b2b',
     shadowOffset: {width: 0, height: 1},
-    shadowOpacity: 0.6,
+    shadowOpacity: 1,
     shadowRadius: 2,
-    elevation: 4,
-    paddingLeft: 20,
-    borderRadius: 6,
+    elevation: 6,
+    padding: 15,
+    borderRadius: 8,
     backgroundColor: '#fff',
-    paddingVertical: 20,
+    marginVertical: 10,
+    marginHorizontal: 0,
   },
 });
 
 const Frame = props => {
   const {main} = styles;
-  return (
-    <View style={main}>
-      <Text>{props.children}</Text>
-    </View>
-  );
+  return <View style={main}>{props.children}</View>;
 };
 
 export default Frame;

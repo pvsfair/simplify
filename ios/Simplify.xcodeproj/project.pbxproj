@@ -17,6 +17,16 @@
 		2DCD954D1E0B4F2C00145EB5 /* SimplifyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SimplifyTests.m */; };
 		46793E4A27CB4B8AB0A09DBD /* Panton Demo Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 306E5D25568346C1AEB4FA02 /* Panton Demo Black.otf */; };
 		A56E91C869304593891B2CF9 /* Panton Demo Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8910863409014E92A69499A8 /* Panton Demo Light.otf */; };
+		8D0872D6F8874A3CAC568F4E /* Panton Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79C243737F534C8E89A62365 /* Panton Bold.ttf */; };
+		BFCA464F39BF450C8AD006ED /* Panton ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BF94C72E5F64E6194B78B1F /* Panton ExtraBold.ttf */; };
+		BBDE0F666B7E497B94A96300 /* Panton Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3A1ED4B83AF4133B96BF26F /* Panton Light.ttf */; };
+		746782C1DCC843189D996238 /* Panton Narrow Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25F5022C596340B980360DB3 /* Panton Narrow Bold.ttf */; };
+		03EEB01003A24DB984575FE2 /* Panton Narrow ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A511E8B79904A42A9C7E0BE /* Panton Narrow ExtraBold.ttf */; };
+		614D954E86C6472B85750B20 /* Panton Narrow Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24E9BA523F6240CEB0A5F3C3 /* Panton Narrow Light.ttf */; };
+		C32E106836E84D78BC2AB0C5 /* Panton Narrow Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BC4F86BDDF34D9DB3A75C51 /* Panton Narrow Regular.ttf */; };
+		D7CF643E0BE94D6698265549 /* Panton Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38E52B34DF284DD7936F8711 /* Panton Regular.ttf */; };
+		46D7F36E0C874C85AA9227BB /* Panton Extra Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C460BF253A64404B1F513AD /* Panton Extra Bold.ttf */; };
+		7842E7F8F5204874BAC65893 /* Panton Narrow Extra Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D36440D80104D8CA997D9D0 /* Panton Narrow Extra Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +64,16 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		306E5D25568346C1AEB4FA02 /* Panton Demo Black.otf */ = {isa = PBXFileReference; name = "Panton Demo Black.otf"; path = "../assets/fonts/Panton Demo Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8910863409014E92A69499A8 /* Panton Demo Light.otf */ = {isa = PBXFileReference; name = "Panton Demo Light.otf"; path = "../assets/fonts/Panton Demo Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		79C243737F534C8E89A62365 /* Panton Bold.ttf */ = {isa = PBXFileReference; name = "Panton Bold.ttf"; path = "../assets/fonts/Panton Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4BF94C72E5F64E6194B78B1F /* Panton ExtraBold.ttf */ = {isa = PBXFileReference; name = "Panton ExtraBold.ttf"; path = "../assets/fonts/Panton ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A3A1ED4B83AF4133B96BF26F /* Panton Light.ttf */ = {isa = PBXFileReference; name = "Panton Light.ttf"; path = "../assets/fonts/Panton Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		25F5022C596340B980360DB3 /* Panton Narrow Bold.ttf */ = {isa = PBXFileReference; name = "Panton Narrow Bold.ttf"; path = "../assets/fonts/Panton Narrow Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8A511E8B79904A42A9C7E0BE /* Panton Narrow ExtraBold.ttf */ = {isa = PBXFileReference; name = "Panton Narrow ExtraBold.ttf"; path = "../assets/fonts/Panton Narrow ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		24E9BA523F6240CEB0A5F3C3 /* Panton Narrow Light.ttf */ = {isa = PBXFileReference; name = "Panton Narrow Light.ttf"; path = "../assets/fonts/Panton Narrow Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8BC4F86BDDF34D9DB3A75C51 /* Panton Narrow Regular.ttf */ = {isa = PBXFileReference; name = "Panton Narrow Regular.ttf"; path = "../assets/fonts/Panton Narrow Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		38E52B34DF284DD7936F8711 /* Panton Regular.ttf */ = {isa = PBXFileReference; name = "Panton Regular.ttf"; path = "../assets/fonts/Panton Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5C460BF253A64404B1F513AD /* Panton Extra Bold.ttf */ = {isa = PBXFileReference; name = "Panton Extra Bold.ttf"; path = "../assets/fonts/Panton Extra Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9D36440D80104D8CA997D9D0 /* Panton Narrow Extra Bold.ttf */ = {isa = PBXFileReference; name = "Panton Narrow Extra Bold.ttf"; path = "../assets/fonts/Panton Narrow Extra Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +186,16 @@
 			children = (
 				306E5D25568346C1AEB4FA02 /* Panton Demo Black.otf */,
 				8910863409014E92A69499A8 /* Panton Demo Light.otf */,
+				79C243737F534C8E89A62365 /* Panton Bold.ttf */,
+				4BF94C72E5F64E6194B78B1F /* Panton ExtraBold.ttf */,
+				A3A1ED4B83AF4133B96BF26F /* Panton Light.ttf */,
+				25F5022C596340B980360DB3 /* Panton Narrow Bold.ttf */,
+				8A511E8B79904A42A9C7E0BE /* Panton Narrow ExtraBold.ttf */,
+				24E9BA523F6240CEB0A5F3C3 /* Panton Narrow Light.ttf */,
+				8BC4F86BDDF34D9DB3A75C51 /* Panton Narrow Regular.ttf */,
+				38E52B34DF284DD7936F8711 /* Panton Regular.ttf */,
+				5C460BF253A64404B1F513AD /* Panton Extra Bold.ttf */,
+				9D36440D80104D8CA997D9D0 /* Panton Narrow Extra Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -309,6 +339,16 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				46793E4A27CB4B8AB0A09DBD /* Panton Demo Black.otf in Resources */,
 				A56E91C869304593891B2CF9 /* Panton Demo Light.otf in Resources */,
+				8D0872D6F8874A3CAC568F4E /* Panton Bold.ttf in Resources */,
+				BFCA464F39BF450C8AD006ED /* Panton ExtraBold.ttf in Resources */,
+				BBDE0F666B7E497B94A96300 /* Panton Light.ttf in Resources */,
+				746782C1DCC843189D996238 /* Panton Narrow Bold.ttf in Resources */,
+				03EEB01003A24DB984575FE2 /* Panton Narrow ExtraBold.ttf in Resources */,
+				614D954E86C6472B85750B20 /* Panton Narrow Light.ttf in Resources */,
+				C32E106836E84D78BC2AB0C5 /* Panton Narrow Regular.ttf in Resources */,
+				D7CF643E0BE94D6698265549 /* Panton Regular.ttf in Resources */,
+				46D7F36E0C874C85AA9227BB /* Panton Extra Bold.ttf in Resources */,
+				7842E7F8F5204874BAC65893 /* Panton Narrow Extra Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

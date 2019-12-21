@@ -1,39 +1,38 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 
 const Button = props => {
   const {buttonStyle, textStyle} = styles;
-  const {onPress, label} = props;
+  const {onPress, label, style} = props;
   return (
-    <TouchableOpacity onPress={onPress} style={buttonStyle}>
-      <Text style={textStyle}>{label}</Text>
-    </TouchableOpacity>
+    <View style={style}>
+      <TouchableOpacity onPress={onPress} style={buttonStyle}>
+        <Text style={textStyle}>{label}</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
-
+//#B2 45     02 77
 const styles = {
   textStyle: {
     alignSelf: 'center',
     color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 14,
+    fontFamily: 'Panton Bold',
   },
   buttonStyle: {
-    height: 45,
+    height: 40,
     alignSelf: 'stretch',
     justifyContent: 'center',
-    backgroundColor: '#38ba7d',
-    borderBottomWidth: 6,
-    borderBottomColor: '#1e6343',
-    borderRightWidth: 6,
-    borderRightColor: '#0d4222',
-    borderTopWidth: 4,
-    borderTopColor: '#68eaad',
-    borderLeftWidth: 4,
-    borderLeftColor: '#58da9d',
-    borderWidth: 1,
-    marginTop: 5,
-    borderRadius: 15,
+    backgroundColor: '#FF6D2B',
+    margin: 4,
+    borderRadius: 12,
+    shadowColor: '#222',
+    shadowOffset: {width: 1, height: 2},
+    shadowOpacity: 1,
+    shadowRadius: 2,
+    elevation: 6,
+    padding: 15,
   },
 };
 

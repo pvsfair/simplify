@@ -15,12 +15,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   underWelcome: {
+    fontFamily: 'Panton Regular',
     color: '#333333',
     marginBottom: 5,
     textAlign: 'left',
     width: '64%',
   },
   welcome: {
+    fontFamily: 'Panton Bold',
     fontSize: 30,
     textAlign: 'left',
   },

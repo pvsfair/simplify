@@ -57,6 +57,16 @@
 	<array>
 		<string>Panton Demo Black.otf</string>
 		<string>Panton Demo Light.otf</string>
+		<string>Panton Bold.ttf</string>
+		<string>Panton ExtraBold.ttf</string>
+		<string>Panton Light.ttf</string>
+		<string>Panton Narrow Bold.ttf</string>
+		<string>Panton Narrow ExtraBold.ttf</string>
+		<string>Panton Narrow Light.ttf</string>
+		<string>Panton Narrow Regular.ttf</string>
+		<string>Panton Regular.ttf</string>
+		<string>Panton Extra Bold.ttf</string>
+		<string>Panton Narrow Extra Bold.ttf</string>
 	</array>
 </dict>
 </plist>
