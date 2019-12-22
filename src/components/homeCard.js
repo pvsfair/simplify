@@ -64,7 +64,7 @@ const Card = props => {
     <Frame>
       <View style={container}>
         <View style={imgContainer}>
-          <ImageWBg imageSrc={imageSrc} />
+          <ImageWBg source={imageSrc} />
         </View>
         <View style={rightContent}>
           <Text style={titleStyle}>{title}</Text>

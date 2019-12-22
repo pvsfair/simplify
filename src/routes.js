@@ -14,7 +14,7 @@ import RoomSchedule from './pages/App/meeting/roomSchedule';
 
 import React from 'react';
 import {Text, Image} from 'react-native';
-import {logo_horizontal} from '../assets/images';
+import {logo_horizontal, meetings_miami} from '../assets/images';
 import Header from './components/topBar';
 
 const AuthStack = createStackNavigator(
@@ -38,8 +38,8 @@ const HomeStack = createStackNavigator(
     RoomSchedule,
   },
   {
-    initialRouteName: 'RoomSchedule',
-    initialRouteParams: {roomId: 0, roomName: 'Miami'},
+    // initialRouteName: 'RoomSchedule',
+    // initialRouteParams: {id: 0, name: 'Miami', image: meetings_miami},
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#0154C6',

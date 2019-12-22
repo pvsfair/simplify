@@ -59,7 +59,7 @@ const Card = props => {
     <View style={{width: '48%'}}>
       <Frame>
         <View style={container}>
-          <ImageWBg imageSrc={imageSrc} />
+          <ImageWBg source={imageSrc} />
           <View style={rightContent}>
             <Text style={titleStyle}>{title}</Text>
             <Button

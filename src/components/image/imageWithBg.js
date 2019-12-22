@@ -23,15 +23,17 @@ const styles = StyleSheet.create({
 const ImageWBG = props => {
   const {bgImage, image, imgContainer} = styles;
 
-  const {bgImageSrc, imageSrc} = props;
+  const {bgImageSrc, source, style} = props;
   return (
-    <View style={imgContainer}>
-      <ImageBackground
-        style={bgImage}
-        resizeMode="contain"
-        source={bgImageSrc | home_bg}>
-        <Image style={image} source={imageSrc} />
-      </ImageBackground>
+    <View style={style}>
+      <View style={imgContainer}>
+        <ImageBackground
+          style={bgImage}
+          resizeMode="contain"
+          source={bgImageSrc | home_bg}>
+          <Image style={image} source={source} />
+        </ImageBackground>
+      </View>
     </View>
   );
 };

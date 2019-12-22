@@ -44,63 +44,53 @@ export default class Meeting extends Component {
     super(props);
     this.state = {
       user: '',
+      rooms: [
+        {
+          id: 0,
+          name: 'Miami',
+          image: meetings_miami,
+        },
+        {
+          id: 1,
+          name: 'Manhattan',
+          image: meetings_manhattan,
+        },
+        {
+          id: 2,
+          name: 'Costa Rica',
+          image: meetings_costaRica,
+        },
+        {
+          id: 3,
+          name: 'Cayman',
+          image: meetings_cayman,
+        },
+      ],
     };
   }
 
   render() {
     const {scroll, greetings, directions, roomList} = styles;
+
+    const roomCards = this.state.rooms.map(room => (
+      <RoomCard
+        key={room.id}
+        imageSrc={room.image}
+        title={room.name}
+        btnText="Agendar"
+        onButtonPress={() => {
+          this.props.navigation.navigate('RoomSchedule', room);
+        }}
+      />
+    ));
+
     return (
       <ScrollView contentContainerStyle={scroll}>
         <Text style={greetings}>Reunião</Text>
         <Text style={directions}>
           Escolha a sala para o agendamento da sua reunião.
         </Text>
-        <View style={roomList}>
-          <RoomCard
-            imageSrc={meetings_miami}
-            title="Miami"
-            btnText="Agendar"
-            onButtonPress={() => {
-              this.props.navigation.navigate('RoomSchedule', {
-                roomId: 0,
-                roomName: 'Miami',
-              });
-            }}
-          />
-          <RoomCard
-            imageSrc={meetings_manhattan}
-            title="Manhattan"
-            btnText="Agendar"
-            onButtonPress={() => {
-              this.props.navigation.navigate('RoomSchedule', {
-                roomId: 1,
-                roomName: 'Manhattan',
-              });
-            }}
-          />
-          <RoomCard
-            imageSrc={meetings_costaRica}
-            title="Costa Rica"
-            btnText="Agendar"
-            onButtonPress={() => {
-              this.props.navigation.navigate('RoomSchedule', {
-                roomId: 2,
-                roomName: 'Costa Rica',
-              });
-            }}
-          />
-          <RoomCard
-            imageSrc={meetings_cayman}
-            title="Cayman"
-            btnText="Agendar"
-            onButtonPress={() => {
-              this.props.navigation.navigate('RoomSchedule', {
-                roomId: 3,
-                roomName: 'Cayman',
-              });
-            }}
-          />
-        </View>
+        <View style={roomList}>{roomCards}</View>
       </ScrollView>
     );
   }
