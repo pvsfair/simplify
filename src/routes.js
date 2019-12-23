@@ -11,6 +11,7 @@ import Profile from './pages/App/profile';
 
 import Meeting from './pages/App/meeting';
 import RoomSchedule from './pages/App/meeting/roomSchedule';
+import MeetingForm from './pages/App/meeting/meetingForm';
 
 import React from 'react';
 import {Text, Image} from 'react-native';
@@ -36,10 +37,10 @@ const HomeStack = createStackNavigator(
     Main: Home,
     Meeting,
     RoomSchedule,
+    MeetingForm,
   },
   {
-    // initialRouteName: 'RoomSchedule',
-    // initialRouteParams: {id: 0, name: 'Miami', image: meetings_miami},
+    initialRouteName: 'MeetingForm',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#0154C6',

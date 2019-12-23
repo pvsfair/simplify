@@ -1,18 +1,11 @@
 import React, {Component} from 'react';
-import {View, ScrollView, Text, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, StyleSheet, Animated} from 'react-native';
 
 import ImageWBg from '../../../components/image/imageWithBg';
 
-import {
-  meetings_cayman,
-  meetings_costaRica,
-  meetings_manhattan,
-  meetings_miami,
-} from '../../../../assets/images';
-
-import RoomCard from '../../../components/roomCard';
 import Button from '../../../components/button';
 import ScheduleItem from '../../../components/scheduleItem';
+import PopupBottom from '../../../components/modals/popup';
 
 const styles = StyleSheet.create({
   scroll: {
@@ -37,7 +30,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 2,
     elevation: 4,
-    padding: 15,
     backgroundColor: '#fff',
     borderTopColor: '#fff',
     borderTopWidth: 10,
@@ -68,32 +60,79 @@ export default class Meeting extends Component {
       schedule: [
         {
           id: 0,
-          startTime: new Date(2019, 21, 12, 6, 0, 0),
+          startTime: new Date(Date.UTC(2019, 11, 21, 6, 0, 0)),
           status: 'AVAILABLE',
-          icon: '',
+          reason:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum sollicitudin.',
         },
         {
           id: 1,
-          startTime: new Date(2019, 21, 12, 7, 0, 0),
-          endTime: new Date(2019, 21, 12, 14, 0, 0),
+          startTime: new Date(Date.UTC(2019, 11, 21, 7, 0, 0)),
+          endTime: new Date(Date.UTC(2019, 11, 21, 14, 0, 0)),
           status: 'MY_REUNION',
-          icon: '',
+          reason:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum sollicitudin.',
         },
         {
           id: 2,
-          startTime: new Date(2019, 21, 12, 14, 0, 0),
+          startTime: new Date(Date.UTC(2019, 11, 21, 14, 0, 0)),
           status: 'AVAILABLE',
-          icon: '',
+          reason:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum sollicitudin.',
         },
         {
           id: 3,
-          startTime: new Date(2019, 21, 12, 15, 0, 0),
+          startTime: new Date(Date.UTC(2019, 11, 21, 15, 0, 0)),
+          status: 'AVAILABLE',
+          reason:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum sollicitudin.',
+        },
+        {
+          id: 4,
+          startTime: new Date(Date.UTC(2019, 11, 21, 16, 0, 0)),
+          endTime: new Date(Date.UTC(2019, 11, 21, 18, 0, 0)),
           status: 'UNAVAILABLE',
-          icon: '',
+          reason:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum sollicitudin.',
+        },
+        {
+          id: 5,
+          startTime: new Date(Date.UTC(2019, 11, 21, 18, 0, 0)),
+          endTime: new Date(Date.UTC(2019, 11, 21, 20, 30, 0)),
+          status: 'UNAVAILABLE',
+          reason:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum sollicitudin.',
+        },
+        {
+          id: 6,
+          startTime: new Date(Date.UTC(2019, 11, 21, 20, 30, 0)),
+          status: 'AVAILABLE',
+          reason:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum sollicitudin.',
+        },
+        {
+          id: 7,
+          startTime: new Date(Date.UTC(2019, 11, 21, 21, 0, 0)),
+          status: 'AVAILABLE',
+          reason:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum sollicitudin.',
         },
       ],
+      animation: new Animated.Value(0),
     };
   }
+
+  itemClicked = item => {
+    if (item.status === 'AVAILABLE') {
+      // Navigate to other screen
+    } else if (item.status === 'MY_REUNION' || item.status === 'UNAVAILABLE') {
+      this.refs.popup.handleOpen(item);
+    }
+  };
+
+  scheduleMeeting = () => {
+    this.props.navigation.navigate('MeetingForm', {isEdit: false});
+  };
 
   render() {
     const {
@@ -105,11 +144,15 @@ export default class Meeting extends Component {
     } = styles;
 
     const scheduleItems = this.state.schedule.map(item => (
-      <ScheduleItem key={item.id} item={item} />
+      <ScheduleItem
+        key={item.id}
+        item={item}
+        onPress={() => this.itemClicked(item)}
+      />
     ));
 
     return (
-      <View>
+      <View style={{flex: 1}}>
         <View style={roomImageAndName}>
           <ImageWBg style={imageTop} source={this.state.roomImage} />
           <Text style={roomNameStyle}>Sala {this.state.roomName}</Text>
@@ -117,8 +160,13 @@ export default class Meeting extends Component {
         <ScrollView contentContainerStyle={scroll}>
           <Text style={greetings}>Agendamentos do dia</Text>
           {scheduleItems}
-          <Button label="Agendar Reunião" style={{width: '100%'}} />
         </ScrollView>
+        <Button
+          label="Agendar Reunião"
+          onPress={this.scheduleMeeting}
+          style={{width: '85%', alignSelf: 'center', margin: 5}}
+        />
+        <PopupBottom ref="popup" />
       </View>
     );
   }

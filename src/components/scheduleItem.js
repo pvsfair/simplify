@@ -1,9 +1,23 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, ImageBackground} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableNativeFeedback,
+} from 'react-native';
 import Frame from './elevatedFrame';
-import {home_bg, home_meeting} from '../../assets/images';
 import Button from './button';
 import ImageWBg from './image/imageWithBg';
+
+import {home_bg, home_meeting} from '../../assets/images';
+import {
+  meetings_calendar,
+  meetings_eye,
+  meetings_person,
+} from '../../assets/icons';
+
+import utils from '../utils/dateUtils';
 
 const styles = status =>
   StyleSheet.create({
@@ -21,7 +35,7 @@ const styles = status =>
       marginVertical: 4,
     },
     leftIndicator: {
-      backgroundColor: stateColorTransformer[status],
+      backgroundColor: statusColorTransformer[status],
       height: '100%',
       width: 7,
       overflow: 'hidden',
@@ -35,44 +49,39 @@ const styles = status =>
     hours: {
       marginHorizontal: 10,
       flexDirection: 'row',
-      flexGrow: 1,
-      flexShrink: 0,
-      flexBasis: '38%',
+      width: '38%',
     },
     status: {
-      flexGrow: 1,
-      flexShrink: 0,
-      flexBasis: '42%',
-      color: stateColorTransformer[status],
+      width: '42%',
+      color: statusColorTransformer[status],
     },
     icon: {
-      flexGrow: 1,
-      flexShrink: 0,
-      flexBasis: '20%',
-      color: stateColorTransformer[status],
+      width: '10%',
+      height: 20,
     },
   });
-function pad(num, size) {
-  return ('000000000' + num).substr(-size);
-}
-const formatDate = date => {
-  return `${pad(date.getHours(), 2)}h${pad(date.getMinutes(), 2)}`;
-};
 
-const stateTransformer = {
+const statusTransformer = {
   AVAILABLE: 'Disponível',
   MY_REUNION: 'Minhas Reuniões',
   UNAVAILABLE: 'Indisponível',
 };
 
-const stateColorTransformer = {
+const statusColorTransformer = {
   AVAILABLE: '#0154C6',
   MY_REUNION: '#82C85A',
   UNAVAILABLE: '#FAB932',
 };
 
+const statusImageTransformer = {
+  AVAILABLE: meetings_calendar,
+  MY_REUNION: meetings_person,
+  UNAVAILABLE: meetings_eye,
+};
+
 const Item = props => {
-  const {startTime, endTime, status, icon} = props.item;
+  const {startTime, endTime, status} = props.item;
+  const {onPress} = props;
   const {
     container,
     leftIndicator,
@@ -84,21 +93,26 @@ const Item = props => {
   } = styles(status);
 
   let endTimeRendered = !(endTime == null || endTime == undefined) ? (
-    <Text style={endHour}> às {formatDate(endTime)}</Text>
+    <Text style={endHour}> às {utils.formatDate(endTime)}</Text>
   ) : (
     undefined
   );
 
   return (
-    <View style={container}>
-      <View style={leftIndicator} />
-      <View style={hours}>
-        <Text style={initHour}>{formatDate(startTime)}</Text>
-        {endTimeRendered}
+    <TouchableNativeFeedback onPress={onPress}>
+      <View style={container}>
+        <View style={leftIndicator} />
+        <View style={hours}>
+          <Text style={initHour}>{utils.formatDate(startTime)}</Text>
+          {endTimeRendered}
+        </View>
+        <Text style={statusStyle}>• {statusTransformer[status]}</Text>
+        <Image
+          style={iconStyle}
+          source={statusImageTransformer[status]}
+          resizeMode="contain"></Image>
       </View>
-      <Text style={statusStyle}>• {stateTransformer[status]}</Text>
-      <Text style={iconStyle}>aa</Text>
-    </View>
+    </TouchableNativeFeedback>
   );
 };
 

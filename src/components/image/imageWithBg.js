@@ -16,24 +16,21 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flex: 1,
     resizeMode: 'contain',
-    margin: 5,
+    margin: 10,
   },
 });
 
 const ImageWBG = props => {
   const {bgImage, image, imgContainer} = styles;
 
-  const {bgImageSrc, source, style} = props;
+  const {bgImageSrc, source, style, imgStyle} = props;
+  const bg =
+    bgImageSrc == null || bgImageSrc == undefined ? home_bg : bgImageSrc;
   return (
-    <View style={style}>
-      <View style={imgContainer}>
-        <ImageBackground
-          style={bgImage}
-          resizeMode="contain"
-          source={bgImageSrc | home_bg}>
-          <Image style={image} source={source} />
-        </ImageBackground>
-      </View>
+    <View style={[imgContainer, style]}>
+      <ImageBackground style={bgImage} resizeMode="contain" source={bg}>
+        <Image style={[image, imgStyle]} source={source} />
+      </ImageBackground>
     </View>
   );
 };
