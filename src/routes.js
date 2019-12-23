@@ -40,7 +40,6 @@ const HomeStack = createStackNavigator(
     MeetingForm,
   },
   {
-    initialRouteName: 'MeetingForm',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#0154C6',

@@ -75,11 +75,13 @@ export default class ColapsableInput extends Component {
   }
 
   handleClick = () => {
+    if (this.props.onClick !== null && this.props.onClick !== undefined)
+      this.props.onClick(!this.state.active);
     this.setState({active: !this.state.active});
   };
 
   render() {
-    const {label, icon, infoText} = this.props;
+    const {label, icon, infoText, value} = this.props;
     const {
       allInput,
       infoRow,
@@ -92,8 +94,27 @@ export default class ColapsableInput extends Component {
       collapsedInput,
     } = styles;
 
-    let active = this.state.active ? {display: 'flex'} : {display: 'none'};
+    const renderedChildren = () => {
+      if (this.state.active) {
+        return <View style={[collapsedInput]}>{this.props.children}</View>;
+      } else {
+        return undefined;
+      }
+    };
 
+    const rendererInfo = () => {
+      if (this.state.active) {
+        return undefined;
+      } else {
+        return (
+          <Text style={info}>
+            {value == null || value == undefined || value == ''
+              ? infoText
+              : value}
+          </Text>
+        );
+      }
+    };
     return (
       <View style={[allInput]}>
         <TouchableOpacity style={[infoRow]} onPress={this.handleClick}>
@@ -107,13 +128,13 @@ export default class ColapsableInput extends Component {
           </View>
           <View style={[infoColumn]}>
             <Text style={infoHeader}>{label}</Text>
-            <Text style={info}>{infoText}</Text>
+            {rendererInfo()}
           </View>
           <View style={[indicatorColumn]}>
             <Text style={[indicator(this.state.active)]}></Text>
           </View>
         </TouchableOpacity>
-        <View style={[collapsedInput, active]}>{this.props.children}</View>
+        {renderedChildren()}
       </View>
     );
   }

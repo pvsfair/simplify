@@ -34,13 +34,23 @@ const styles = StyleSheet.create({
 });
 
 const Input = props => {
-  const {label, infoText} = props;
+  const {label, infoText, onChangeText, value} = props;
   const {main, textInputStyle} = styles;
 
   return (
     <View style={{flex: 1, width: '100%'}}>
-      <ColapsableInput infoText={infoText} icon={meetings_lines} label={label}>
-        <TextInput multiline placeholder={infoText} style={[textInputStyle]} />
+      <ColapsableInput
+        infoText={infoText}
+        icon={meetings_lines}
+        label={label}
+        value={value}>
+        <TextInput
+          multiline
+          placeholder={infoText}
+          onChangeText={onChangeText}
+          style={[textInputStyle]}
+          value={value}
+        />
       </ColapsableInput>
     </View>
   );

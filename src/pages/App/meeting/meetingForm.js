@@ -5,6 +5,10 @@ import ImageWBg from '../../../components/image/imageWithBg';
 
 import Button from '../../../components/button';
 import TextInput from '../../../components/forms/longTextInput';
+import DateInput from '../../../components/forms/datePicker';
+import TimeInput from '../../../components/forms/timePicker';
+
+import {formatDate} from '../../../utils/dateUtils';
 
 const styles = StyleSheet.create({
   scroll: {
@@ -56,8 +60,17 @@ export default class Meeting extends Component {
     this.state = {
       user: '',
       isEdit: navigation.getParam('isEdit', false),
+      date: null,
+      time: null,
+      people: [],
+      reason: '',
     };
   }
+
+  handleFinishForm = () => {
+    console.log('Reunião agendada com sucesso :)');
+    this.props.navigation.goBack();
+  };
 
   render() {
     const {scroll, greetings} = styles;
@@ -66,15 +79,30 @@ export default class Meeting extends Component {
       <View style={{flex: 1}}>
         <ScrollView contentContainerStyle={scroll}>
           <Text style={greetings}>Agendar Reunião</Text>
-          <TextInput label="Data" infoText="Informe a data" />
-          <TextInput label="Hora" infoText="Informe o horário" />
+          <DateInput
+            label="Data"
+            infoText="Informe a data"
+            onChangeDate={date => this.setState({date})}
+            value={this.state.date?.toDateString()}
+          />
+          <TimeInput
+            label="Hora"
+            infoText="Informe o horário"
+            onChangeDate={time => this.setState({time})}
+            value={formatDate(this.state.time)}
+          />
           <TextInput
             label="Participantes"
             infoText="Informe os participantes"
           />
-          <TextInput label="Motivo" infoText="Informe o motivo da reunião" />
+          <TextInput
+            label="Motivo"
+            infoText="Informe o motivo da reunião"
+            onChangeText={reason => this.setState({reason})}
+            value={this.state.reason}
+          />
         </ScrollView>
-        <Button label="Agendar Reunião" />
+        <Button label="Agendar Reunião" onPress={this.handleFinishForm} />
       </View>
     );
   }
