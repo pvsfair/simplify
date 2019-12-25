@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     };
   },
   collapsedInput: {
-    width: '85%',
+    width: '95%',
     alignSelf: 'center',
   },
 });

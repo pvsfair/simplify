@@ -7,6 +7,13 @@ const icons = {
   meetings_lines: require('./meetings/lines.png'),
   meetings_people: require('./meetings/people.png'),
   meetings_person: require('./meetings/person.png'),
+  refund_card: require('./refund/card.png'),
+  refund_check: require('./refund/check.png'),
+  refund_file: require('./refund/file.png'),
+  refund_image: require('./refund/image.png'),
+  refund_gray_eye: require('./refund/eye.png'),
+  refund_money: require('./refund/money.png'),
+  refund_toggle: require('./refund/toggle.png'),
 };
 
 module.exports = icons;

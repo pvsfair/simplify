@@ -13,6 +13,9 @@ import Meeting from './pages/App/meeting';
 import RoomSchedule from './pages/App/meeting/roomSchedule';
 import MeetingForm from './pages/App/meeting/meetingForm';
 
+import Refund from './pages/App/refund';
+import RefundForm from './pages/App/refund/refundForm';
+
 import React from 'react';
 import {Text, Image} from 'react-native';
 import {logo_horizontal, meetings_miami} from '../assets/images';
@@ -38,8 +41,11 @@ const HomeStack = createStackNavigator(
     Meeting,
     RoomSchedule,
     MeetingForm,
+    Refund,
+    RefundForm,
   },
   {
+    initialRouteName: 'RefundForm',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#0154C6',

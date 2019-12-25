@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Modal} from 'react-native';
 import ColapsableInput from './colapsableInput';
 
 import DateTimePicker from 'react-native-modal-datetime-picker';
@@ -67,8 +67,6 @@ export default class Input extends Component {
   render() {
     const {label, infoText, onChangeDate, value} = this.props;
     const {main, textInputStyle} = styles;
-
-    console.log(value);
 
     return (
       <View style={{flex: 1, width: '100%'}}>

@@ -1,15 +1,22 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Button = props => {
   const {buttonStyle, textStyle} = styles;
   const {onPress, label, style, secondary} = props;
   return (
-    <View style={style}>
-      <TouchableOpacity onPress={onPress} style={buttonStyle(!!secondary)}>
+    <LinearGradient
+      start={{x: 0.48, y: -0.6}}
+      end={{x: 0.52, y: 1.6}}
+      colors={['#FFB202', '#FF4577']}
+      style={[buttonStyle(!!secondary), style]}>
+      <TouchableOpacity
+        onPress={onPress}
+        style={{alignSelf: 'stretch', borderRadius: 12, padding: 15}}>
         <Text style={textStyle(!!secondary)}>{label}</Text>
       </TouchableOpacity>
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -27,7 +34,6 @@ const styles = {
       height: 40,
       alignSelf: 'stretch',
       justifyContent: 'center',
-      backgroundColor: secondary ? '#fff' : '#FF6D2B',
       margin: 4,
       borderWidth: secondary ? 1 : 0,
       borderColor: secondary ? '#FF6D2B' : '#fff',
@@ -37,7 +43,6 @@ const styles = {
       shadowOpacity: 1,
       shadowRadius: 2,
       elevation: 4,
-      padding: 15,
     };
   },
 };

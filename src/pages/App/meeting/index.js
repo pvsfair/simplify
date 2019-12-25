@@ -65,6 +65,21 @@ export default class Meeting extends Component {
           name: 'Cayman',
           image: meetings_cayman,
         },
+        {
+          id: 4,
+          name: 'Cayman',
+          image: meetings_cayman,
+        },
+        {
+          id: 5,
+          name: 'Cayman',
+          image: meetings_cayman,
+        },
+        {
+          id: 6,
+          name: 'Cayman',
+          image: meetings_cayman,
+        },
       ],
     };
   }

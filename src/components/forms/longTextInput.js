@@ -24,12 +24,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
   },
   textInputStyle: {
-    width: '100%',
+    width: '90%',
     borderColor: '#E3E5E6',
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: 15,
     paddingVertical: 12,
+    alignSelf: 'center',
+    fontFamily: 'Panton Regular',
   },
 });
 

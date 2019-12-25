@@ -8,6 +8,7 @@ import {
   Dimensions,
   Image,
 } from 'react-native';
+import moment from 'moment';
 
 import {
   meetings_bgCircle,
@@ -56,11 +57,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     minHeight: 80,
   },
-  infoTable: {flexDirection: 'column'},
+  infoTable: {
+    flexDirection: 'column',
+    marginTop: 20,
+  },
   infoRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    marginBottom: 25,
+    marginBottom: 20,
   },
   imgColumn: {
     alignContent: 'flex-start',
@@ -207,13 +211,6 @@ export default class App extends React.Component {
       actions,
     } = styles;
 
-    const startTime = this.state.item?.startTime
-      ? utils.formatDate(this.state.item?.startTime)
-      : '';
-    const endTime = this.state.item?.endTime
-      ? utils.formatDate(this.state.item?.endTime)
-      : '';
-
     const peopleOnMeeting = this.state.item?.people?.map(person => (
       <View>
         <View key={person.id} style={personStyle}>
@@ -241,22 +238,12 @@ export default class App extends React.Component {
           <CustomButton style={{width: '45%'}} label="Editar" />
         </View>
       );
-    // console.log(
-    //   new Intl.DateTimeFormat('pt-BR', {
-    //     year: 'numeric',
-    //     month: 'long',
-    //     day: 'numeric',
-    //   }).format(this.state.item?.startTime),
-    // );
-    // const startDate = this.state.item.startTime.toString();
 
     return (
       <Animated.View style={[StyleSheet.absoluteFill, cover, backdrop]}>
+        <TouchableOpacity style={{flex: 1}} onPress={this.handleClose} />
         <View style={[sheet]}>
           <Animated.View style={[popup, slideUp]}>
-            <TouchableOpacity onPress={this.handleClose}>
-              <Text>Close</Text>
-            </TouchableOpacity>
             <View style={[infoTable]}>
               <View style={[infoRow]}>
                 <View style={[imgColumn]}>
@@ -270,7 +257,7 @@ export default class App extends React.Component {
                 <View style={[infoColumn]}>
                   <Text style={infoHeader}>Data</Text>
                   <Text style={info}>
-                    {this.state.item?.startTime?.toDateString()}
+                    {moment(this.state.item?.startTime).format('LL')}
                   </Text>
                 </View>
               </View>
@@ -287,7 +274,8 @@ export default class App extends React.Component {
                 <View style={[infoColumn]}>
                   <Text style={infoHeader}>Hora</Text>
                   <Text style={info}>
-                    {startTime} às {endTime}
+                    {moment(this.state.item?.startTime).format('HH[h]mm')} às{' '}
+                    {moment(this.state.item?.endTime).format('HH[h]mm')}
                   </Text>
                 </View>
               </View>

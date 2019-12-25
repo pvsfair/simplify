@@ -25,7 +25,7 @@ const TopBar = props => {
   const {allProps} = props;
   const navigation = allProps?.navigation;
   const shouldRenderBackButton = navigation?.state?.routes?.length > 1;
-  //   console.log(shouldRenderBackButton);
+
   return (
     <View style={container}>
       <View style={imageContainer}>

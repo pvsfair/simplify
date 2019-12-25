@@ -51,7 +51,7 @@ export default class Home extends Component {
           description="Solicite, visualize e revise seus reembolsos"
           btnText="Solicitar Reembolso"
           onButtonPress={() => {
-            this.props.navigation.navigate('Profile');
+            this.props.navigation.navigate('Refund');
           }}
         />
         <Card

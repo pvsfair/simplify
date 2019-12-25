@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {View, ScrollView, Text, StyleSheet, Animated} from 'react-native';
 
+import moment from 'moment';
+
 import ImageWBg from '../../../components/image/imageWithBg';
 
 import Button from '../../../components/button';
@@ -29,28 +31,6 @@ const styles = StyleSheet.create({
     letterSpacing: -1.5,
     paddingLeft: 15,
   },
-  roomImageAndName: {
-    shadowColor: '#2b2b2b',
-    shadowOffset: {width: 0, height: 4},
-    shadowOpacity: 1,
-    shadowRadius: 2,
-    elevation: 4,
-    backgroundColor: '#fff',
-    borderTopColor: '#fff',
-    borderTopWidth: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  imageTop: {
-    height: 100,
-    width: 100,
-  },
-  roomNameStyle: {
-    fontFamily: 'Panton Bold',
-    fontSize: 26,
-    color: '#444',
-  },
 });
 export default class Meeting extends Component {
   constructor(props) {
@@ -61,7 +41,8 @@ export default class Meeting extends Component {
       user: '',
       isEdit: navigation.getParam('isEdit', false),
       date: null,
-      time: null,
+      timeInit: null,
+      timeEnd: null,
       people: [],
       reason: '',
     };
@@ -83,13 +64,16 @@ export default class Meeting extends Component {
             label="Data"
             infoText="Informe a data"
             onChangeDate={date => this.setState({date})}
-            value={this.state.date?.toDateString()}
+            value={this.state.date && moment(this.state.date).format('LL')}
           />
           <TimeInput
             label="Hora"
             infoText="Informe o horário"
-            onChangeDate={time => this.setState({time})}
-            value={formatDate(this.state.time)}
+            onChangeTimes={(timeInit, timeEnd) =>
+              this.setState({timeInit, timeEnd})
+            }
+            valueTime1={formatDate(this.state.timeInit)}
+            valueTime2={formatDate(this.state.timeEnd)}
           />
           <TextInput
             label="Participantes"

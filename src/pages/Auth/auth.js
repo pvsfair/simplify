@@ -3,9 +3,10 @@ import {Text, View, CheckBox, StyleSheet} from 'react-native';
 import CustomTextInput from '../../components/textInput';
 import CustomButton from '../../components/button';
 
+import FloatingLabelInput from '../../components/forms/floatingLabelInput';
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F5FCFF',
     flex: 1,
     padding: 25,
     justifyContent: 'center',
@@ -68,16 +69,16 @@ export default class Main extends Component {
             Agora as coisas estão mais Simplify :) para nós da TradeUp
           </Text>
         </View>
-        <CustomTextInput
-          placeholder="Informe seu CPF"
+        <FloatingLabelInput
+          label="CPF"
           onChangeText={cpfValue => this.setState({cpfValue})}
           value={this.state.cpfValue}
         />
-        <CustomTextInput
-          placeholder="Informa a senha"
+        <FloatingLabelInput
+          label="Senha"
           onChangeText={password => this.setState({password})}
           value={this.state.password}
-          isSecure={true}
+          secureTextEntry
         />
         <View style={styles.rememberPass}>
           <CheckBox />

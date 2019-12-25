@@ -5,7 +5,7 @@ import ImageWBg from '../../../components/image/imageWithBg';
 
 import Button from '../../../components/button';
 import ScheduleItem from '../../../components/scheduleItem';
-import PopupBottom from '../../../components/modals/popup';
+import PopupBottom from '../../../components/modals/popupMeeting';
 
 const styles = StyleSheet.create({
   scroll: {

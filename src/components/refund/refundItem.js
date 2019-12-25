@@ -6,18 +6,15 @@ import {
   Image,
   TouchableNativeFeedback,
 } from 'react-native';
-import Frame from './elevatedFrame';
-import Button from './button';
-import ImageWBg from './image/imageWithBg';
+import moment from 'moment';
+import 'moment/min/locales';
 
-import {home_bg, home_meeting} from '../../assets/images';
+import {refund_gray_eye} from '../../../assets/icons';
+
 import {
-  meetings_calendar,
-  meetings_eye,
-  meetings_person,
-} from '../../assets/icons';
-
-import utils from '../utils/dateUtils';
+  statusTransformer,
+  statusColorTransformer,
+} from '../../utils/refundHelpers';
 
 const styles = status =>
   StyleSheet.create({
@@ -43,9 +40,6 @@ const styles = status =>
     initHour: {
       fontFamily: 'Panton Regular',
     },
-    endHour: {
-      fontFamily: 'Panton Regular',
-    },
     hours: {
       marginHorizontal: 10,
       flexDirection: 'row',
@@ -61,55 +55,31 @@ const styles = status =>
     },
   });
 
-const statusTransformer = {
-  AVAILABLE: 'Disponível',
-  MY_REUNION: 'Minhas Reuniões',
-  UNAVAILABLE: 'Indisponível',
-};
-
-const statusColorTransformer = {
-  AVAILABLE: '#0154C6',
-  MY_REUNION: '#82C85A',
-  UNAVAILABLE: '#FAB932',
-};
-
-const statusImageTransformer = {
-  AVAILABLE: meetings_calendar,
-  MY_REUNION: meetings_person,
-  UNAVAILABLE: meetings_eye,
-};
-
 const Item = props => {
-  const {startTime, endTime, status} = props.item;
+  const {refundDate, status} = props.refund;
   const {onPress} = props;
   const {
     container,
     leftIndicator,
     initHour,
-    endHour,
     hours,
     statusStyle = styles(status).status,
     iconStyle = styles(status).icon,
   } = styles(status);
-
-  let endTimeRendered = !(endTime == null || endTime == undefined) ? (
-    <Text style={endHour}> às {utils.formatDate(endTime)}</Text>
-  ) : (
-    undefined
-  );
 
   return (
     <TouchableNativeFeedback onPress={onPress}>
       <View style={container}>
         <View style={leftIndicator} />
         <View style={hours}>
-          <Text style={initHour}>{utils.formatDate(startTime)}</Text>
-          {endTimeRendered}
+          <Text style={initHour}>
+            {moment(refundDate).format('DD MMM YYYY')}
+          </Text>
         </View>
         <Text style={statusStyle}>• {statusTransformer[status]}</Text>
         <Image
           style={iconStyle}
-          source={statusImageTransformer[status]}
+          source={refund_gray_eye}
           resizeMode="contain"></Image>
       </View>
     </TouchableNativeFeedback>
