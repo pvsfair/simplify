@@ -45,6 +45,7 @@ const Form = props => {
           value={refundTypes[type]}
         />
         <TextInput
+          type={'money'}
           label="Valor"
           infoText="Informe o valor"
           textFixedLeft="R$"

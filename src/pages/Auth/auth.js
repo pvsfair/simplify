@@ -13,6 +13,7 @@ import CustomButton from '../../components/button';
 import FloatingLabelInput from '../../components/forms/floatingLabelInput';
 
 import {logo_splash, logo_wave} from '../../../assets/images';
+import {Easing} from 'react-native-reanimated';
 
 const styles = StyleSheet.create({
   container: {
@@ -74,17 +75,20 @@ const Main = props => {
   const [isReady, setIsReady] = useState(false);
   const [cpfValue, setCpfValue] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberPass, setRememberPass] = useState(false);
   const [animation, setAnimation] = useState(new Animated.Value(0));
 
   const {splashScreen, logo} = styles;
 
   useEffect(() => {
     setTimeout(() => {
-      setIsReady(true);
       Animated.timing(animation, {
         toValue: 1,
         duration: 500,
       }).start();
+      setTimeout(() => {
+        setIsReady(true);
+      }, 550);
     }, 2000);
   }, []);
 
@@ -96,11 +100,10 @@ const Main = props => {
   forgotPassword = () => {
     props.navigation.navigate('ForgotPass');
   };
-
   return (
     <>
       <ImageBackground
-        imageStyle={{bottom: '38%', resizeMode: 'contain'}}
+        imageStyle={{height: '55%'}}
         style={{flex: 1, justifyDirection: 'flex-start'}}
         source={logo_wave}>
         <View style={styles.container}>
@@ -113,6 +116,7 @@ const Main = props => {
             </Text>
           </View>
           <FloatingLabelInput
+            type={'cpf'}
             label="CPF"
             onChangeText={setCpfValue}
             value={cpfValue}
@@ -124,7 +128,11 @@ const Main = props => {
             secureTextEntry
           />
           <View style={styles.rememberPass}>
-            <CheckBox />
+            <CheckBox
+              value={rememberPass}
+              onValueChange={setRememberPass}
+              tintColors={{true: '#0154C6', false: '#0154C6'}}
+            />
             <Text>Lembrar minha senha</Text>
           </View>
           <CustomButton onPress={login} label="Entrar" />
@@ -135,11 +143,13 @@ const Main = props => {
           />
         </View>
       </ImageBackground>
-      <Animated.View
-        style={[
-          StyleSheet.absoluteFill,
-          splashScreen(animation),
-        ]}></Animated.View>
+      {!isReady && (
+        <Animated.View
+          style={[
+            StyleSheet.absoluteFill,
+            splashScreen(animation),
+          ]}></Animated.View>
+      )}
       <Animated.View style={[logo(animation), {}]}>
         <Image
           style={{height: '100%', width: '100%'}}

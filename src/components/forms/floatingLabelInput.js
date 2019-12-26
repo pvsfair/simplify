@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {View, StatusBar, TextInput, Animated, Text} from 'react-native';
 
+import {TextInputMask} from 'react-native-masked-text';
+
 class FloatingLabelInput extends Component {
   state = {
     isFocused: false,
@@ -74,26 +76,48 @@ class FloatingLabelInput extends Component {
       paddingHorizontal: 5,
       padding: 0,
       fontFamily: !isFocused ? 'Panton Regular' : 'Panton Bold',
-    }; 
+    };
+
+    const showMaskedInput = props.type != null && props.type != undefined;
+
     return (
       <View style={{paddingTop: 12, marginTop: 5}}>
         <Animated.Text style={labelStyle}>{label}</Animated.Text>
-        <TextInput
-          {...props}
-          style={{
-            borderRadius: 10,
-            paddingHorizontal: 20,
-            paddingVertical: 0,
-            height: 46,
-            color: '#000',
-            borderWidth: 1,
-            borderColor: '#555',
-            elevation: -1,
-          }}
-          onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          blurOnSubmit
-        />
+        {showMaskedInput ? (
+          <TextInputMask
+            {...props}
+            style={{
+              borderRadius: 10,
+              paddingHorizontal: 20,
+              paddingVertical: 0,
+              height: 46,
+              color: '#000',
+              borderWidth: 1,
+              borderColor: '#555',
+              elevation: -1,
+            }}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            blurOnSubmit
+          />
+        ) : (
+          <TextInput
+            {...props}
+            style={{
+              borderRadius: 10,
+              paddingHorizontal: 20,
+              paddingVertical: 0,
+              height: 46,
+              color: '#000',
+              borderWidth: 1,
+              borderColor: '#555',
+              elevation: -1,
+            }}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            blurOnSubmit
+          />
+        )}
       </View>
     );
   }

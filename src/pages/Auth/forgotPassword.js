@@ -63,6 +63,7 @@ export default class Main extends Component {
           </Text>
         </View>
         <FloatingLabelInput
+          type={'cpf'}
           label="CPF"
           onChangeText={cpfValue => this.setState({cpfValue})}
           value={this.state.cpfValue}

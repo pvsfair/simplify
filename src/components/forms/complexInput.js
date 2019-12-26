@@ -166,6 +166,7 @@ export default class Input extends Component {
                   value={this.state.bankAccountData.fullName}
                 />
                 <FloatingLabelInput
+                  type={'cpf'}
                   label="CPF"
                   onChangeText={cpfValue => this.setState({cpfValue})}
                   value={this.state.cpfValue}

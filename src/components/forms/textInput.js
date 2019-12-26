@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
 import ColapsableInput from './colapsableInput';
 
-import {refund_money, meetings_lines} from '../../../assets/icons';
+import {meetings_lines} from '../../../assets/icons';
+
+import {TextInputMask} from 'react-native-masked-text';
 
 const styles = StyleSheet.create({
   textInputGroupStyle: {
@@ -43,6 +45,7 @@ const Input = props => {
   const showTextFixedLeft = !(
     textFixedLeft == null || textFixedLeft == undefined
   );
+  const showMaskedInput = props.type != null && props.type != undefined;
   return (
     <View style={{flex: 1, width: '100%'}}>
       <ColapsableInput
@@ -54,12 +57,23 @@ const Input = props => {
           {showTextFixedLeft && (
             <Text style={[textFixedLeftStyle]}>{textFixedLeft}</Text>
           )}
-          <TextInput
-            style={[textInputStyle]}
-            placeholder={infoText}
-            onChangeText={onChangeText}
-            value={value}
-          />
+          {showMaskedInput ? (
+            <TextInputMask
+              type={props.type}
+              options={props.options}
+              style={[textInputStyle]}
+              placeholder={infoText}
+              onChangeText={onChangeText}
+              value={value}
+            />
+          ) : (
+            <TextInput
+              style={[textInputStyle]}
+              placeholder={infoText}
+              onChangeText={onChangeText}
+              value={value}
+            />
+          )}
         </View>
       </ColapsableInput>
     </View>
