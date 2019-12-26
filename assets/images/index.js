@@ -4,6 +4,8 @@ const images = {
   home_money: require('./home/money.png'),
   home_refund: require('./home/refund.png'),
   logo_horizontal: require('./logos/logoHorizontal.png'),
+  logo_splash: require('./logos/logoSplash.png'),
+  logo_wave: require('./logos/wave.png'),
   meetings_cayman: require('./meetings/cayman.png'),
   meetings_costaRica: require('./meetings/costaRica.png'),
   meetings_manhattan: require('./meetings/manhattan.png'),

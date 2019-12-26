@@ -1,14 +1,24 @@
-import React, {Component} from 'react';
-import {Text, View, CheckBox, StyleSheet} from 'react-native';
-import CustomTextInput from '../../components/textInput';
+import React, {useState, useEffect} from 'react';
+import {
+  Text,
+  View,
+  CheckBox,
+  StyleSheet,
+  Animated,
+  Image,
+  ImageBackground,
+} from 'react-native';
 import CustomButton from '../../components/button';
 
 import FloatingLabelInput from '../../components/forms/floatingLabelInput';
+
+import {logo_splash, logo_wave} from '../../../assets/images';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
+    marginTop: 200,
     justifyContent: 'center',
   },
   header: {
@@ -24,76 +34,121 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontFamily: 'Panton Bold',
-    fontSize: 30,
+    fontSize: 55,
+    lineHeight: 89,
     textAlign: 'left',
+    color: '#0154C6',
   },
   rememberPass: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+  splashScreen: animation => {
+    return {
+      backgroundColor: 'blue',
+      opacity: animation.interpolate({
+        inputRange: [0, 1],
+        outputRange: [1, 0],
+        extrapolate: 'clamp',
+      }),
+      elevation: 10,
+    };
+  },
+  logo: animation => {
+    return {
+      width: 200,
+      height: 200,
+      position: 'absolute',
+      elevation: 11,
+      alignSelf: 'center',
+      top: animation.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['38%', '2%'],
+        extrapolate: 'clamp',
+      }),
+    };
+  },
 });
 
-export default class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isReady: false,
-      cpfValue: '',
-      password: '',
-    };
-  }
+const Main = props => {
+  const [isReady, setIsReady] = useState(false);
+  const [cpfValue, setCpfValue] = useState('');
+  const [password, setPassword] = useState('');
+  const [animation, setAnimation] = useState(new Animated.Value(0));
 
-  componentDidMount() {
-    this.setState({isReady: true});
-  }
+  const {splashScreen, logo} = styles;
 
-  login() {
+  useEffect(() => {
+    setTimeout(() => {
+      setIsReady(true);
+      Animated.timing(animation, {
+        toValue: 1,
+        duration: 500,
+      }).start();
+    }, 2000);
+  }, []);
+
+  login = () => {
     console.log('Login');
-    this.props.navigation.navigate('Home');
-  }
+    props.navigation.navigate('Home');
+  };
 
-  forgotPassword() {
-    this.props.navigation.navigate('ForgotPass');
-  }
+  forgotPassword = () => {
+    props.navigation.navigate('ForgotPass');
+  };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.welcome}>Olá!</Text>
-          <Text style={styles.underWelcome}>
-            Agora as coisas estão mais Simplify :) para nós da TradeUp
-          </Text>
+  return (
+    <>
+      <ImageBackground
+        imageStyle={{bottom: '38%', resizeMode: 'contain'}}
+        style={{flex: 1, justifyDirection: 'flex-start'}}
+        source={logo_wave}>
+        <View style={styles.container}>
+          <View style={styles.header}>
+            <Text style={styles.welcome}>Olá!</Text>
+            <Text style={styles.underWelcome}>
+              Agora as coisas estão mais{' '}
+              <Text style={{color: '#0154C6'}}>Simplify :)</Text> para nós da
+              TradeUp
+            </Text>
+          </View>
+          <FloatingLabelInput
+            label="CPF"
+            onChangeText={setCpfValue}
+            value={cpfValue}
+          />
+          <FloatingLabelInput
+            label="Senha"
+            onChangeText={setPassword}
+            value={password}
+            secureTextEntry
+          />
+          <View style={styles.rememberPass}>
+            <CheckBox />
+            <Text>Lembrar minha senha</Text>
+          </View>
+          <CustomButton onPress={login} label="Entrar" />
+          <CustomButton
+            negative
+            onPress={forgotPassword}
+            label="Esqueceu a senha?"
+          />
         </View>
-        <FloatingLabelInput
-          label="CPF"
-          onChangeText={cpfValue => this.setState({cpfValue})}
-          value={this.state.cpfValue}
+      </ImageBackground>
+      <Animated.View
+        style={[
+          StyleSheet.absoluteFill,
+          splashScreen(animation),
+        ]}></Animated.View>
+      <Animated.View style={[logo(animation), {}]}>
+        <Image
+          style={{height: '100%', width: '100%'}}
+          source={logo_splash}
+          resizeMode="contain"
         />
-        <FloatingLabelInput
-          label="Senha"
-          onChangeText={password => this.setState({password})}
-          value={this.state.password}
-          secureTextEntry
-        />
-        <View style={styles.rememberPass}>
-          <CheckBox />
-          <Text>Lembrar minha senha</Text>
-        </View>
-        <CustomButton
-          onPress={() => {
-            this.login();
-          }}
-          label="Entrar"
-        />
-        <CustomButton
-          negative
-          onPress={() => {
-            this.forgotPassword();
-          }}
-          label="Esqueceu a senha?"
-        />
-      </View>
-    );
-  }
-}
+      </Animated.View>
+    </>
+  );
+};
+
+export default Main;

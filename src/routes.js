@@ -27,6 +27,7 @@ const AuthStack = createStackNavigator(
     ForgotPass,
   },
   {
+    headerMode: 'none',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#0154C6',

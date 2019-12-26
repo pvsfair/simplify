@@ -74,7 +74,7 @@ class FloatingLabelInput extends Component {
       paddingHorizontal: 5,
       padding: 0,
       fontFamily: !isFocused ? 'Panton Regular' : 'Panton Bold',
-    }; // !isFocused ? '#fff0' : '#ffff',
+    }; 
     return (
       <View style={{paddingTop: 12, marginTop: 5}}>
         <Animated.Text style={labelStyle}>{label}</Animated.Text>

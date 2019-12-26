@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import CustomTextInput from '../../components/textInput';
 import CustomButton from '../../components/button';
+import FloatingLabelInput from '../../components/forms/floatingLabelInput';
 
 const styles = StyleSheet.create({
   container: {
@@ -62,16 +62,15 @@ export default class Main extends Component {
             senha para que você possa acessar sua conta
           </Text>
         </View>
-        <CustomTextInput
-          placeholder="Informe seu CPF"
+        <FloatingLabelInput
+          label="CPF"
           onChangeText={cpfValue => this.setState({cpfValue})}
           value={this.state.cpfValue}
         />
-        <CustomTextInput
-          placeholder="Informe sua data de nascimento"
+        <FloatingLabelInput
+          label="Data de Nascimento"
           onChangeText={password => this.setState({password})}
           value={this.state.password}
-          isSecure={true}
         />
         <CustomButton
           onPress={() => {
