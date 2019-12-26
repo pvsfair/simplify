@@ -1,5 +1,6 @@
+import {Text, Image, View, TouchableOpacity} from 'react-native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import {createStackNavigator, HeaderBackButton} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import Auth from './pages/Auth/auth';
@@ -17,9 +18,8 @@ import Refund from './pages/App/refund';
 import RefundForm from './pages/App/refund/refundForm';
 
 import React from 'react';
-import {Text, Image} from 'react-native';
 import {logo_horizontal, meetings_miami} from '../assets/images';
-import Header from './components/topBar';
+import {filter} from '../assets/icons';
 
 const AuthStack = createStackNavigator(
   {
@@ -45,14 +45,36 @@ const HomeStack = createStackNavigator(
     RefundForm,
   },
   {
-    initialRouteName: 'RefundForm',
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: {
+      headerTintColor: '#fff',
       headerStyle: {
         backgroundColor: '#0154C6',
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10,
       },
-      header: headerProps => <Header allProps={headerProps} />,
+      headerTitle: (
+        <Image
+          source={logo_horizontal}
+          style={{
+            height: 30,
+            width: 130,
+            alignSelf: 'center',
+            alignItems: 'center',
+            alignContent: 'center',
+          }}
+          resizeMode="contain"
+        />
+      ),
+      // headerRight: (
+      //   <TouchableOpacity style={{width: 20, height: 20, marginRight: 18}}>
+      //     <Image
+      //       style={{width: 20, height: 20}}
+      //       source={filter}
+      //       resizeMode="contain"
+      //     />
+      //   </TouchableOpacity>
+      // ),
     },
   },
 );
@@ -109,7 +131,7 @@ export default createAppContainer(
       App: BottomNavigationStack,
     },
     {
-      initialRouteName: 'App',
+      initialRouteName: 'Auth',
     },
   ),
 );

@@ -14,6 +14,7 @@ const icons = {
   refund_gray_eye: require('./refund/eye.png'),
   refund_money: require('./refund/money.png'),
   refund_toggle: require('./refund/toggle.png'),
+  filter: require('./filter.png'),
 };
 
 module.exports = icons;

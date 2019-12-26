@@ -1,11 +1,22 @@
 import React, {Component} from 'react';
-import {View, ScrollView, Text, StyleSheet, Animated} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  Animated,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 
 import ImageWBg from '../../../components/image/imageWithBg';
 
 import Button from '../../../components/button';
 import ScheduleItem from '../../../components/scheduleItem';
 import PopupBottom from '../../../components/modals/popupMeeting';
+import PopupFilter from '../../../components/modals/popupFilter';
+
+import {filter} from '../../../../assets/icons';
 
 const styles = StyleSheet.create({
   scroll: {
@@ -51,6 +62,8 @@ export default class Meeting extends Component {
   constructor(props) {
     super(props);
     const {navigation} = props;
+
+    navigation.state.handleFilterClick = this.handleFilterClick;
 
     this.state = {
       user: '',
@@ -122,9 +135,31 @@ export default class Meeting extends Component {
     };
   }
 
+  static navigationOptions = ({navigation}) => {
+    return {
+      headerRight: (
+        <TouchableOpacity
+          style={{width: 20, height: 20, marginRight: 18}}
+          onPress={() => {
+            navigation.state.handleFilterClick();
+          }}>
+          <Image
+            style={{width: 20, height: 20}}
+            source={filter}
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+      ),
+    };
+  };
+
+  handleFilterClick = () => {
+    this.refs.filters.handleOpen(null);
+  };
+
   itemClicked = item => {
     if (item.status === 'AVAILABLE') {
-      // Navigate to other screen
+      this.props.navigation.navigate('MeetingForm', {isEdit: false});
     } else if (item.status === 'MY_REUNION' || item.status === 'UNAVAILABLE') {
       this.refs.popup.handleOpen(item);
     }
@@ -167,6 +202,7 @@ export default class Meeting extends Component {
           style={{width: '85%', alignSelf: 'center', margin: 5}}
         />
         <PopupBottom ref="popup" />
+        <PopupFilter ref="filters" />
       </View>
     );
   }

@@ -44,10 +44,6 @@ export default class Main extends Component {
   }
 
   componentDidMount() {
-    // await Font.loadAsync({
-    //   Roboto: require('native-base/Fonts/Roboto.ttf'),
-    //   Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-    // });
     this.setState({isReady: true});
   }
 
@@ -91,6 +87,7 @@ export default class Main extends Component {
           label="Entrar"
         />
         <CustomButton
+          negative
           onPress={() => {
             this.forgotPassword();
           }}
