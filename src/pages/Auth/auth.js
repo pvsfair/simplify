@@ -7,13 +7,15 @@ import {
   Animated,
   Image,
   ImageBackground,
+  AsyncStorage,
 } from 'react-native';
 import CustomButton from '../../components/button';
 
 import FloatingLabelInput from '../../components/forms/floatingLabelInput';
 
 import {logo_splash, logo_wave} from '../../../assets/images';
-import {Easing} from 'react-native-reanimated';
+
+const STORAGE_KEY = '@LoginData:key';
 
 const styles = StyleSheet.create({
   container: {
@@ -75,12 +77,13 @@ const Main = props => {
   const [isReady, setIsReady] = useState(false);
   const [cpfValue, setCpfValue] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberPass, setRememberPass] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [animation, setAnimation] = useState(new Animated.Value(0));
 
   const {splashScreen, logo} = styles;
 
   useEffect(() => {
+    recoverData();
     setTimeout(() => {
       Animated.timing(animation, {
         toValue: 1,
@@ -89,17 +92,60 @@ const Main = props => {
       setTimeout(() => {
         setIsReady(true);
       }, 550);
-    }, 2000);
+    }, 1000);
   }, []);
 
-  login = () => {
-    console.log('Login');
+  login = async () => {
+    console.log('Login1');
+    if (rememberMe) {
+      console.log('Login2');
+      await saveData();
+      console.log('Login3');
+    } else {
+      console.log('Login4');
+      await removeData();
+      console.log('Login5');
+    }
     props.navigation.navigate('Home');
   };
 
   forgotPassword = () => {
     props.navigation.navigate('ForgotPass');
   };
+
+  saveData = async () => {
+    try {
+      const toSave = {cpfValue, password};
+      const a = await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+      console.log(a, 'saved');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  recoverData = async () => {
+    try {
+      const value = await AsyncStorage.getItem(STORAGE_KEY);
+      console.log(value);
+      if (value !== null) {
+        const recovered = JSON.parse(value);
+        setCpfValue(recovered.cpfValue);
+        setPassword(recovered.password);
+        setRememberMe(true);
+        return;
+      }
+      console.log('No data');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  removeData = async () => {
+    try {
+      const value = await AsyncStorage.removeItem(STORAGE_KEY);
+    } catch (error) {}
+  };
+
   return (
     <>
       <ImageBackground
@@ -118,19 +164,23 @@ const Main = props => {
           <FloatingLabelInput
             type={'cpf'}
             label="CPF"
-            onChangeText={setCpfValue}
+            onChangeText={cpf => {
+              setCpfValue(cpf);
+            }}
             value={cpfValue}
+            testID="cpfInput"
           />
           <FloatingLabelInput
             label="Senha"
             onChangeText={setPassword}
             value={password}
             secureTextEntry
+            testID="passInput"
           />
           <View style={styles.rememberPass}>
             <CheckBox
-              value={rememberPass}
-              onValueChange={setRememberPass}
+              value={rememberMe}
+              onValueChange={setRememberMe}
               tintColors={{true: '#0154C6', false: '#0154C6'}}
             />
             <Text>Lembrar minha senha</Text>

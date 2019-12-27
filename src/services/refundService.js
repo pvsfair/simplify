@@ -1,6 +1,6 @@
 import api from '../config/api';
 
-const listRefunds = async () => {
+export const listRefunds = async () => {
   try {
     const response = await api.get('/refund');
 
@@ -12,7 +12,7 @@ const listRefunds = async () => {
   }
 };
 
-const getRefund = async refundId => {
+export const getRefund = async refundId => {
   try {
     const response = await api.get(`/signin/${refundId}`);
 
@@ -24,7 +24,7 @@ const getRefund = async refundId => {
   }
 };
 
-const deleteRefund = async refundId => {
+export const deleteRefund = async refundId => {
   try {
     const response = await api.delete(`/signin/${refundId}`);
 
@@ -34,7 +34,7 @@ const deleteRefund = async refundId => {
   }
 };
 
-const createRefund = async refundData => {
+export const createRefund = async refundData => {
   try {
     const response = await api.post(`/signin`, {refundData});
 
@@ -44,7 +44,7 @@ const createRefund = async refundData => {
   }
 };
 
-const editRefund = async (refundId, refundData) => {
+export const editRefund = async (refundId, refundData) => {
   try {
     const response = await api.put(`/signin/${refundId}`, {refundData});
 
@@ -55,4 +55,3 @@ const editRefund = async (refundId, refundData) => {
 };
 
 export default {listRefunds, getRefund, deleteRefund, createRefund, editRefund};
-export {listRefunds, getRefund, deleteRefund, createRefund, editRefund};

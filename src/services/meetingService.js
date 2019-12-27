@@ -1,18 +1,29 @@
 import api from '../config/api';
 
-const listRooms = async filters => {
+export const listRooms = async filters => {
   try {
     const response = await api.get('/room', {...filters});
 
-    const {message, data} = response.data;
+    const {
+      message,
+      data,
+      total,
+      per_page,
+      current_page,
+      last_page,
+      from,
+      to,
+    } = response.data;
 
-    return data;
+    const pagination = {total, per_page, current_page, last_page, from, to};
+
+    return {pagination, data};
   } catch (error) {
     console.log(error);
   }
 };
 
-const getRoom = async roomId => {
+export const getRoom = async roomId => {
   try {
     const response = await api.get(`/room/${roomId}`);
 
@@ -24,7 +35,7 @@ const getRoom = async roomId => {
   }
 };
 
-const createMeeting = async meetingData => {
+export const createMeeting = async meetingData => {
   try {
     const response = await api.post(`/room`, {meetingData});
 
@@ -34,7 +45,7 @@ const createMeeting = async meetingData => {
   }
 };
 
-const editMeeting = async (meetingId, meetingData) => {
+export const editMeeting = async (meetingId, meetingData) => {
   try {
     const response = await api.post(`/room/${meetingId}`, {meetingData});
 
@@ -44,7 +55,7 @@ const editMeeting = async (meetingId, meetingData) => {
   }
 };
 
-const listMeeting = async filters => {
+export const listMeeting = async filters => {
   try {
     const response = await api.get(`/room`, {...filters});
 
@@ -56,7 +67,7 @@ const listMeeting = async filters => {
   }
 };
 
-const getMeeting = async meetingId => {
+export const getMeeting = async meetingId => {
   try {
     const response = await api.get(`/room/${meetingId}`);
 
@@ -69,14 +80,6 @@ const getMeeting = async meetingId => {
 };
 
 export default {
-  listRooms,
-  getRoom,
-  createMeeting,
-  editMeeting,
-  listMeeting,
-  getMeeting,
-};
-export {
   listRooms,
   getRoom,
   createMeeting,

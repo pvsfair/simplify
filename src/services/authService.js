@@ -1,6 +1,6 @@
 import api from '../config/api';
 
-const signIn = async (cpf, password) => {
+export const signIn = async (cpf, password) => {
   try {
     const response = await api.post('/signin', {cpf, password});
 
@@ -13,7 +13,7 @@ const signIn = async (cpf, password) => {
   }
 };
 
-const signOut = async (cpf, password) => {
+export const signOut = async (cpf, password) => {
   try {
     const response = await api.post('/signout');
     return response.status == 200;
@@ -22,7 +22,7 @@ const signOut = async (cpf, password) => {
   }
 };
 
-const resetPassword = async (cpf, birthDate) => {
+export const resetPassword = async (cpf, birthDate) => {
   try {
     const response = await api.post('/resetPassword');
     return response.status == 200;
@@ -31,7 +31,7 @@ const resetPassword = async (cpf, birthDate) => {
   }
 };
 
-const changePassword = async (oldPassword, newPassword) => {
+export const changePassword = async (oldPassword, newPassword) => {
   try {
     const response = await api.post('/changePassword', {
       oldPassword,
@@ -44,4 +44,3 @@ const changePassword = async (oldPassword, newPassword) => {
 };
 
 export default {signIn, signOut, resetPassword, changePassword};
-export {signIn, signOut, resetPassword, changePassword};

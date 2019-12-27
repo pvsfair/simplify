@@ -20,6 +20,18 @@ class FloatingLabelInput extends Component {
       }).start();
     }
   }
+  componentDidUpdate() {
+    if (
+      this.props.value != '' &&
+      this.props.value != null &&
+      this.props.value != undefined
+    ) {
+      Animated.timing(this.state.animation, {
+        toValue: 1,
+        duration: 150,
+      }).start();
+    }
+  }
   handleFocus = () => {
     this.setState({isFocused: true});
     Animated.timing(this.state.animation, {

@@ -1,8 +1,8 @@
 import api from '../config/api';
 
-const signIn = async (cpf, password) => {
+export const acceptRequest = async requestId => {
   try {
-    const response = await api.post('/signin', {cpf, password});
+    const response = await api.post(`/request/accept/${requestId}`);
 
     const {message, data} = response.data;
     const {user} = data;
@@ -13,5 +13,4 @@ const signIn = async (cpf, password) => {
   }
 };
 
-export default {signIn};
-export {signIn};
+export default {acceptRequest};
